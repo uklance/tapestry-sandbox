@@ -57,11 +57,10 @@ public class ModeComponentEventLinkEncoder implements ComponentEventLinkEncoder 
 	private Request transform(Request request) {
 		Request transformed = request;
 		Matcher matcher = URL_PATTERN.matcher(request.getPath());
-		Mode mode = ModeImpl.DEFAULT;
 		if (matcher.matches()) {
 			String prefix = matcher.group(1);
 			if (specialPrefixes.contains(prefix)) {
-				mode = new ModeImpl(prefix);
+				environment.push(Mode.class, new ModeImpl(prefix));
 				final String newPath = matcher.group(2);
 				transformed = new DelegateRequest(request) {
 					public String getPath() {
@@ -70,7 +69,6 @@ public class ModeComponentEventLinkEncoder implements ComponentEventLinkEncoder 
 				};
 			}
 		}
-		environment.push(Mode.class, mode);
 		return transformed;
 	}
 }
