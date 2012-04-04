@@ -6,6 +6,7 @@
 	<b>mode = '${mode}'</b><br />
 	<t:eventlink event="page2event">Page 2 by event</t:eventlink><br />
 	<t:pagelink page="modePage2">Page 2 by page link</t:pagelink><br />
+	
     <p:sidebar>
     </p:sidebar>
 

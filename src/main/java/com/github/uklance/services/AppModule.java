@@ -19,7 +19,7 @@ import org.apache.tapestry5.services.Response;
 import org.apache.tapestry5.services.linktransform.LinkTransformer;
 import org.slf4j.Logger;
 
-import com.github.uklance.extras.ModeComponentEventLinkEncoder;
+import com.github.uklance.mode.ModeComponentEventLinkEncoder;
 
 /**
  * This module is automatically included as part of the Tapestry IoC Registry, it's a good place to

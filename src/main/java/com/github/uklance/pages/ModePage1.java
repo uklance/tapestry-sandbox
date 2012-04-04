@@ -3,7 +3,7 @@ package com.github.uklance.pages;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.InjectPage;
 
-import com.github.uklance.extras.Mode;
+import com.github.uklance.mode.Mode;
 
 public class ModePage1 {
 	@Environmental

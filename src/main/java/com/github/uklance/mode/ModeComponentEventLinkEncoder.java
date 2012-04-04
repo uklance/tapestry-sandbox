@@ -1,4 +1,4 @@
-package com.github.uklance.extras;
+package com.github.uklance.mode;
 
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -10,6 +10,8 @@ import org.apache.tapestry5.services.ComponentEventRequestParameters;
 import org.apache.tapestry5.services.Environment;
 import org.apache.tapestry5.services.PageRenderRequestParameters;
 import org.apache.tapestry5.services.Request;
+
+import com.github.uklance.web.DelegateRequest;
 
 public class ModeComponentEventLinkEncoder implements ComponentEventLinkEncoder {
 	private static final Pattern URL_PATTERN = Pattern.compile("/([^/]*)(/.*)");
@@ -61,7 +63,7 @@ public class ModeComponentEventLinkEncoder implements ComponentEventLinkEncoder 
 			if (specialPrefixes.contains(prefix)) {
 				mode = new ModeImpl(prefix);
 				final String newPath = matcher.group(2);
-				transformed = new RequestDelegate(request) {
+				transformed = new DelegateRequest(request) {
 					public String getPath() {
 						return newPath;
 					}
