@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.RAMDirectory;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
@@ -16,10 +18,11 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestHandler;
 import org.apache.tapestry5.services.Response;
-import org.apache.tapestry5.services.linktransform.LinkTransformer;
 import org.slf4j.Logger;
 
 import com.github.uklance.mode.ModeComponentEventLinkEncoder;
+import com.github.uklance.services.internal.ItemDaoImpl;
+import com.github.uklance.services.internal.ItemServiceImpl;
 
 /**
  * This module is automatically included as part of the Tapestry IoC Registry, it's a good place to
@@ -35,6 +38,9 @@ public class AppModule
         // Use service builder methods (example below) when the implementation
         // is provided inline, or requires more initialization than simply
         // invoking the constructor.
+    	
+    	binder.bind(ItemDao.class, ItemDaoImpl.class);
+    	binder.bind(ItemService.class, ItemServiceImpl.class);
     }
 
     public static void contributeFactoryDefaults(
@@ -58,6 +64,7 @@ public class AppModule
         // you can extend this list of locales (it's a comma separated series of locale names;
         // the first locale name is the default when there's no reasonable match).
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en");
+        //configuration.add(SymbolConstants.PRODUCTION_MODE, false);
     }
 
 
@@ -126,5 +133,9 @@ public class AppModule
     public ComponentEventLinkEncoder decorateComponentEventLinkEncoder(ComponentEventLinkEncoder delegate, Environment environment) {
     	Set<String> specialPrefixes = new HashSet<String>(Arrays.asList("foo", "bar", "facebook"));
     	return new ModeComponentEventLinkEncoder(delegate, environment, specialPrefixes);
+    }
+    
+    public Directory buildDirectory() {
+    	return new RAMDirectory();
     }
 }

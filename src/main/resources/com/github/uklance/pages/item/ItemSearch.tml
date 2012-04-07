@@ -1,0 +1,24 @@
+<html t:type="layout" title="tapestry-sandbox Index"
+	t:sidebarTitle="Framework Version" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" xmlns:ex="tapestry-library:exanpe">
+
+	<t:beaneditform t:id="filterForm" object="filter" submitLabel="Search" />
+	Items = '${items?.size()}'
+
+	<t:if test="!items?.empty">
+		<ex:gmap t:id="gmap" latitude="51.517598273919" longitude="-0.082235212309326" mapType="roadmap" sidebar="true">
+			<t:loop source="items" value="item">
+					<ex:gmapMarker title="${item.item.name}" latitude="${item.item.latitude}" longitude="${item.item.longitude}">
+						<p:info>
+							<b>${item.item.name}</b><br />
+							${item.score} kms away
+						</p:info>
+					</ex:gmapMarker>
+			</t:loop>
+		</ex:gmap>
+	</t:if>
+
+	<p:sidebar>
+	</p:sidebar>
+
+</html>

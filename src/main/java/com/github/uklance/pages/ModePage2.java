@@ -6,7 +6,7 @@ import org.apache.tapestry5.annotations.InjectPage;
 import com.github.uklance.mode.Mode;
 
 public class ModePage2 {
-	@Environmental
+	@Environmental(false)
 	Mode mode;
 	
 	@InjectPage
