@@ -56,7 +56,7 @@ public class ModeComponentEventLinkEncoder implements ComponentEventLinkEncoder 
 	private Link transform(Link link) {
 		Mode mode = environment.peek(Mode.class);
 		Link transformed = link;
-		if (mode != null && mode.getMode() != null) {
+		if (mode != null) {
 			Matcher matcher = OUTBOUND_PATTERN.matcher(link.getBasePath());
 			if (!matcher.matches()) {
 				throw new RuntimeException("Illegal path " + link.getBasePath());
