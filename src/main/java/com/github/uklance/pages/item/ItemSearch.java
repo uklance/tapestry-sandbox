@@ -35,6 +35,6 @@ public class ItemSearch {
 	}
 	
 	void onSuccess() {
-		items = itemService.findScoredItems(filter);
+		items = itemService.findByFilter(filter);
 	}
 }

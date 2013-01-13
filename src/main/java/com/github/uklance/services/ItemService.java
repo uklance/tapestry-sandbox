@@ -7,8 +7,8 @@ import com.github.uklance.domain.ScoredItem;
 
 public interface ItemService {
 
-	public abstract List<ScoredItem> findScoredItems(ItemFilter filter);
+	public abstract List<ScoredItem> findByFilter(ItemFilter filter);
 
-	public abstract void addItem(Item item);
+	public abstract void addItems(Item... items);
 
 }
